@@ -16,7 +16,7 @@ import java.util.List;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.Assert.*;
+
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -66,7 +66,7 @@ public class CategoryControllerTest {
     @Test
     public void testGetByNameCategories() throws Exception {
         CategoryDTO category1 = new CategoryDTO();
-        category1.setId(1l);
+        category1.setId(11l);
         category1.setName(NAME);
 
         when(categoryService.getCategoryByName(anyString())).thenReturn(category1);
