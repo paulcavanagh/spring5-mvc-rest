@@ -2,6 +2,7 @@ package guru.springfamework.services;
 
 import guru.springfamework.api.v1.mapper.CustomerMapper;
 import guru.springfamework.api.v1.model.CustomerDTO;
+import guru.springfamework.controllers.v1.CustomerController;
 import guru.springfamework.domain.Customer;
 import guru.springfamework.repositories.CustomerRepository;
 import org.junit.Before;
@@ -24,7 +25,7 @@ public class CustomerServiceImplTest {
     public static final long ID = 1L;
     public static final String FIRST_NAME = "Paul";
     public static final String LAST_NAME = "Cavanagh";
-    public static final String CUSTOMER_URL = "/api/v1/customer/1";
+
     CustomerService customerService;
 
     @Mock
@@ -72,7 +73,7 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void testcreateNewCustomer() throws Exception {
+    public void testCreateNewCustomer() throws Exception {
         //given
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setFirstName("Jim");
@@ -91,7 +92,7 @@ public class CustomerServiceImplTest {
         //then
         assertEquals(customerDTO.getFirstName(), savedDto.getFirstName());
         assertEquals(customerDTO.getLastName(), savedDto.getLastName());
-        assertEquals(CUSTOMER_URL, savedDto.getCustomerUrl() );
+        assertEquals(getCustomerUrl(1L), savedDto.getCustomerUrl() );
 
     }
 
@@ -114,7 +115,7 @@ public class CustomerServiceImplTest {
 
         //then
         assertEquals(customerDTO.getFirstName(), savedDto.getFirstName());
-        assertEquals(CUSTOMER_URL, savedDto.getCustomerUrl());
+        assertEquals(getCustomerUrl(1L), savedDto.getCustomerUrl());
 
     }
 
@@ -125,5 +126,10 @@ public class CustomerServiceImplTest {
          customerRepository.deleteById(id);
 
          verify(customerRepository, times(1)).deleteById(anyLong());
+    }
+
+
+    private String getCustomerUrl(Long id){
+        return CustomerController.BASE_URL + "/" + id;
     }
 }
