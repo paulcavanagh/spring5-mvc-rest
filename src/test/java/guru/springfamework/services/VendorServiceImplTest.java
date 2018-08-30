@@ -15,6 +15,8 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.when;
 
 public class VendorServiceImplTest {
@@ -73,18 +75,19 @@ public class VendorServiceImplTest {
         savedVendor.setName(vendorDTO.getName());
         savedVendor.setId(1L);
 
-        when(vendorRepository.save(any(Vendor.class))).thenReturn(savedVendor);
+        given(vendorRepository.save(any(Vendor.class))).willReturn(savedVendor);
 
         //when
         VendorDTO savedDTO = vendorService.createNewVendor(vendorDTO);
 
         //then
+        then(vendorRepository).should().save(any(Vendor.class));
         assertEquals(vendorDTO.getName(), savedDTO.getName());
         assertEquals("/api/v1/vendors/1", savedDTO.getVendorUrl());
     }
 
     @Test
-    public void saveCustomerByDTO() throws Exception {
+    public void saveVendorByDTO() throws Exception {
         //given
         VendorDTO vendorDTO = new VendorDTO();
         vendorDTO.setName("Microsoft");

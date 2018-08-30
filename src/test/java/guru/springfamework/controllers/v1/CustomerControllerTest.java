@@ -138,7 +138,6 @@ public class CustomerControllerTest {
                 .andExpect(jsonPath("$.customer_url", equalTo(CUSTOMER_URL)));
     }
 
-
     @Test
     public  void testPatchCustomer() throws Exception {
         //given
