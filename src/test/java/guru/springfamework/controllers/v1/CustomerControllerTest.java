@@ -86,8 +86,8 @@ public class CustomerControllerTest {
 
         mockMvc.perform(get("/api/v1/customers/11")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-                //.andExpect(jsonPath("$.firstName", equalTo("David")));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstName", equalTo("David")));
     }
 
     @Test

@@ -73,7 +73,7 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void testCreateNewCustomer() throws Exception {
+    public void CreateNewCustomer() throws Exception {
         //given
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setFirstName("Jim");
@@ -97,7 +97,7 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void saveCustomerByDTO() throws Exception{
+    public void SaveCustomerByDTO() throws Exception{
 
         //given
         CustomerDTO customerDTO = new CustomerDTO();
@@ -120,7 +120,7 @@ public class CustomerServiceImplTest {
     }
 
     @Test
-    public void deleteCustomerById() throws Exception {
+    public void DeleteCustomerById() throws Exception {
          Long id = 1L;
 
          customerRepository.deleteById(id);
