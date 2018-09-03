@@ -3,9 +3,12 @@ package guru.springfamework.controllers.v1;
 import guru.springfamework.api.v1.model.VendorDTO;
 import guru.springfamework.api.v1.model.VendorListDTO;
 import guru.springfamework.services.VendorService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@Api(description = " This is my Vendor Controller")
 @RestController
 @RequestMapping(VendorController.BASE_URL)
 public class VendorController {
@@ -17,6 +20,7 @@ public class VendorController {
         this.vendorService = vendorService;
     }
 
+    @ApiOperation(value = "This will get a list  of vendors.", notes = "Some notes about the API.")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public VendorListDTO getAllVendors()
